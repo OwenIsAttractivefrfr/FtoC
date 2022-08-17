@@ -6,8 +6,20 @@ import java.awt.event.ActionListener;
 
 public class Main
 {
+    
+
+    public static double CelsiusFormula(double Fahrenheit)
+    {
+        return 5.0/9.0 * (Fahrenheit - 32.0);
+    }
+
+
     public static void main(String[] args)
     {
-	// write your code here
+
+        double C = CelsiusFormula(58);
+        System.out.println(C);
+
+        GUI gui = new GUI();
     }
 }
