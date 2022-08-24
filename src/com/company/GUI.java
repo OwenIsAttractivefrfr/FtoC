@@ -9,11 +9,12 @@ public class GUI
 {
 
     JFrame jframe;
-    JTextField celsius;
+    JFormattedTextField celsius;
     JTextField fahrenheit;
     JButton jbutton;
     JLabel celsiusLabel;
     JLabel fahrenheitLabel;
+    String colorString = "red";
 
 
     public GUI()
@@ -24,7 +25,8 @@ public class GUI
         jframe.setSize(1280,720);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        celsius = new JTextField(5);
+        celsius = new JFormattedTextField(new java.text.DecimalFormat("##0.0#"));
+        celsius.setValue(new Double(0.0));
         fahrenheit = new JTextField(5);
 
 
@@ -33,12 +35,27 @@ public class GUI
             public void actionPerformed(ActionEvent e) {
                 double result = Main.CelsiusFormula(Double.parseDouble(celsius.getText()));
 
+                if(result <= 0)
+                {
+                    colorString = "blue";
+                }
+                else if(result <= 26)
+                {
+                    colorString = "green";
+                }
+                else
+                {
+                    colorString = "red";
+                }
+
                 String resultText = "" + result;
-                celsiusLabel.setText(resultText + " Celsius");
+                celsiusLabel.setText("<html><font color = " + colorString + ">" + result + "&#176</font> Celsius");
+
+
             }
         });
 
-        celsiusLabel = new JLabel("");
+        celsiusLabel = new JLabel("0.0 Celsius");
         fahrenheitLabel = new JLabel("Fahrenheit");
 
 
